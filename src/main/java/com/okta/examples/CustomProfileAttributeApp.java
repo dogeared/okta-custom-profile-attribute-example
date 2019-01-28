@@ -17,16 +17,14 @@ public class CustomProfileAttributeApp {
 
     public static void main(String[] args) throws IOException {
 
+        InputStream in = CustomProfileAttributeApp.class.getResourceAsStream("/new-profile-attribute.json");
+        Map<String, Object> apiBodyFromJson = mapper.readValue(in, new TypeReference<Map<String, Object>>(){});
+
         Client client = Clients.builder()
             .setOrgUrl(args[0])
             .setClientCredentials(new TokenClientCredentials(args[1]))
             .build();
 
-        InputStream in = CustomProfileAttributeApp.class.getResourceAsStream("/new-profile-attribute.json");
-
-        Map<String, Object> apiBodyFromJson =
-            mapper.readValue(in, new TypeReference<Map<String, Object>>(){});
-        
         ExtensibleResource resource = client.instantiate(ExtensibleResource.class);
         resource.put("definitions", apiBodyFromJson.get("definitions"));
 
