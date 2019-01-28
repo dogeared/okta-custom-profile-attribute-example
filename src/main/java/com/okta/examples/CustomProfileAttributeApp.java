@@ -24,10 +24,11 @@ public class CustomProfileAttributeApp {
 
         InputStream in = CustomProfileAttributeApp.class.getResourceAsStream("/new-profile-attribute.json");
 
-        Map<String, Object> jsonObject = mapper.readValue(in, new TypeReference<Map<String, Object>>(){});
+        Map<String, Object> customProfileAttributeJson =
+            mapper.readValue(in, new TypeReference<Map<String, Object>>(){});
         
         ExtensibleResource resource = client.instantiate(ExtensibleResource.class);
-        resource.put("definitions", jsonObject.get("definitions"));
+        resource.put("definitions", customProfileAttributeJson.get("definitions"));
 
         ExtensibleResource result = client.http()
             .setBody(resource)
