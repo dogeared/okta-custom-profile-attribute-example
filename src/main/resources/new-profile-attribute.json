@@ -1,0 +1,22 @@
+{
+  "definitions": {
+    "custom": {
+      "id": "#custom",
+      "type": "object",
+      "properties": {
+        "mySpecialProperty": {
+          "title": "My Special Property",
+          "description": "Description of custom property",
+          "type": "string",
+          "permissions": [
+            {
+              "principal": "SELF",
+              "action": "READ_ONLY"
+            }
+          ]
+        }
+      },
+      "required": []
+    }
+  }
+}
